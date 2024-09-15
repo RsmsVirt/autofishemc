@@ -1,0 +1,10 @@
+const Actionbar = JsMacros.createCustomEvent("Actionbar")
+const TextHelper = Java.type("xyz.wagyourtail.jsmacros.client.api.helpers.TextHelper")
+Actionbar.registerEvent()
+JsMacros.on("RecvPacket", JsMacros.createEventFilterer("RecvPacket").setType("OverlayMessageS2CPacket"), JavaWrapper.methodToJava(e => {
+    Actionbar.putObject("message", TextHelper.wrap(e.packet.method_34155()))
+    Actionbar.trigger()
+}))
+event.stopListener = JavaWrapper.methodToJava(() => {
+    Java.type("xyz.wagyourtail.jsmacros.core.Core").getInstance().eventRegistry.events.remove("Actionbar")
+})
