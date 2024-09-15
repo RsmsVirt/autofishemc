@@ -1,0 +1,6 @@
+JsMacros.assertEvent(event, 'Service')
+JsMacros.on('RecvMessage', JavaWrapper.methodToJava(e => {
+  if (e.text?.getString() === '         Next entity cleanup will be in 5 minutes.') {
+    Player.interactions()?.interact()
+  }
+}))
